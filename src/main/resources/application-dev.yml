@@ -9,7 +9,7 @@ spring:
     show-sql: true
 
   datasource:
-    url     : jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: '742e143'
     driver-class-name: org.postgresql.Driver
@@ -17,5 +17,23 @@ spring:
     init:
       mode: always
       data-locations: classpath:init_script.sql
+  cache:
+    jcache:
+      provider: org.ehcache.jsr107.EhcacheCachingProvider
+    cache-names: courierCache
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: false
+          scheduler:
+            instanceName: MyScheduler
+          threadPool:
+            threadCount: 2
+
 
 

@@ -20,6 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.hibernate.id.uuid.UuidGenerator;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users_tg")
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -41,7 +42,7 @@ public class User {
     private String nickname;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "user_role",
+            name = "users_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> userRoleList;

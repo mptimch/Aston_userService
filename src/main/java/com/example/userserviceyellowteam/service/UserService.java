@@ -4,5 +4,5 @@ import com.example.userserviceyellowteam.dto.UserResponseDto;
 
 public interface UserService {
 
-    public UserResponseDto getAnyCourier();
+    UserResponseDto getAnyCourier();
 }
