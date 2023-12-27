@@ -16,4 +16,5 @@ public interface UserJpaRepository extends JpaRepository<User, UUID> {
     @Query("select u from User u join fetch u.userRoleList r where r.title = 'COURIER'")
     List<User> findAllWhereRoleLikeCourier();
 
+
 }
