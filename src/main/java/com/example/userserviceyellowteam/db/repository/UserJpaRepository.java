@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -14,6 +15,6 @@ public interface UserJpaRepository extends JpaRepository<User, UUID> {
 
     @Cacheable(cacheNames = "courierCache")
     @Query("select u from User u join fetch u.userRoleList r where r.title = 'COURIER'")
-    List<User> findAllWhereRoleLikeCourier();
+    Optional<List<User>> findAllWhereRoleLikeCourier();
 
 }
