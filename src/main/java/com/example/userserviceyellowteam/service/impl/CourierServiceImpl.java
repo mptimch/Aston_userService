@@ -6,6 +6,7 @@ import com.example.userserviceyellowteam.service.CourierService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -19,11 +20,13 @@ public class CourierServiceImpl implements CourierService {
 
     /**
      * Возвращает одного курьера из кеша
+     *
      * @return User
      */
     @Override
     public User getAny() {
-        List<User> list = userJpaRepository.findAllWhereRoleLikeCourier();
+        Optional<List<User>> optionalUsers = userJpaRepository.findAllWhereRoleLikeCourier();
+        List<User> list = optionalUsers.orElseThrow();
         int currentCounter = counter.getAndIncrement();
         int index = currentCounter % list.size();
         return list.get(index);
