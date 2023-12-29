@@ -8,4 +8,6 @@ public interface UserService {
     UserResponseDto getAnyCourier();
 
     UserResponseDto create(UserRequestDto userRequestDto);
+
+    UserResponseDto getUserByChatId(String chatId);
 }

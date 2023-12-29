@@ -62,20 +62,21 @@ public class UserServiceImplTest {
         UserRequestDto requestDto = new UserRequestDto();
         requestDto.setChatId("chat1");
         requestDto.setNickname("nickname1");
-        requestDto.setUserRoles(List.of("COURIER"));
+        requestDto.setUserRole(UserRole.COURIER);
 
         User user = new User();
         user.setChatId(requestDto.getChatId());
         user.setNickname(requestDto.getNickname());
 
         Role role = new Role();
+        role.setId(UUID.randomUUID());
         role.setTitle(UserRole.COURIER);
 
         User savedUser = new User();
         savedUser.setId(UUID.randomUUID());
         savedUser.setChatId(user.getChatId());
         savedUser.setNickname(user.getNickname());
-        savedUser.setUserRoleList(List.of(role));
+        savedUser.setUserRole(role);
 
         UserResponseDto responseDto = new UserResponseDto();
         responseDto.setId(savedUser.getId());
