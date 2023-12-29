@@ -6,6 +6,7 @@ import com.example.userserviceyellowteam.db.repository.RoleJpaRepository;
 import com.example.userserviceyellowteam.db.repository.UserJpaRepository;
 import com.example.userserviceyellowteam.dto.UserRequestDto;
 import com.example.userserviceyellowteam.dto.UserResponseDto;
+import com.example.userserviceyellowteam.dto.UserResponseFullDto;
 import com.example.userserviceyellowteam.mapper.UserMapper;
 import com.example.userserviceyellowteam.service.CourierService;
 import com.example.userserviceyellowteam.service.UserService;
@@ -42,8 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserByChatId(String chatId) {
+    public UserResponseFullDto getUserByChatId(String chatId) {
         User user = userJpaRepository.findByChatId(chatId).orElseThrow();
-        return userMapper.mapToDto(user);
+        return userMapper.toUserResponseFullDto(user);
     }
 }

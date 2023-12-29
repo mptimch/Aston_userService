@@ -1,9 +1,11 @@
 package com.example.userserviceyellowteam.config;
+
 import com.example.userserviceyellowteam.cache.CourierCachingJob;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -12,6 +14,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 public class QuartzConfig {
 
     @Bean
+    @Primary
     public JobDetailFactoryBean jobDetail() {
         JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
         jobDetailFactory.setJobClass(CourierCachingJob.class);

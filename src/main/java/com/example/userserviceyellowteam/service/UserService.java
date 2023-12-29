@@ -2,6 +2,7 @@ package com.example.userserviceyellowteam.service;
 
 import com.example.userserviceyellowteam.dto.UserRequestDto;
 import com.example.userserviceyellowteam.dto.UserResponseDto;
+import com.example.userserviceyellowteam.dto.UserResponseFullDto;
 
 public interface UserService {
 
@@ -9,5 +10,5 @@ public interface UserService {
 
     UserResponseDto create(UserRequestDto userRequestDto);
 
-    UserResponseDto getUserByChatId(String chatId);
+   UserResponseFullDto getUserByChatId(String chatId);
 }

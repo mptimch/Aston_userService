@@ -2,6 +2,7 @@ package com.example.userserviceyellowteam.controllers;
 
 import com.example.userserviceyellowteam.dto.UserRequestDto;
 import com.example.userserviceyellowteam.dto.UserResponseDto;
+import com.example.userserviceyellowteam.dto.UserResponseFullDto;
 import com.example.userserviceyellowteam.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class UserController {
         return userService.create(userRequestDto);
     }
 @GetMapping("/{id}")
-    UserResponseDto getUserByChatId(@PathVariable(name = "id") String chatId){
+UserResponseFullDto getUserByChatId(@PathVariable(name = "id") String chatId){
         return userService.getUserByChatId(chatId);
 }
 }
