@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface UserJpaRepository extends JpaRepository<User, UUID> {
 
     @Cacheable(cacheNames = "courierCache")
-    @Query("select u from User u join u.userRole r where r.title = 'COURIER'")
+    @Query("select u from User u join u.userRole role where role.title = 'COURIER'")
     Optional<List<User>> findAllWhereRoleLikeCourier();
 
 

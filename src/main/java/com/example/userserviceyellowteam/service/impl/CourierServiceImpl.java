@@ -3,6 +3,7 @@ package com.example.userserviceyellowteam.service.impl;
 import com.example.userserviceyellowteam.db.entity.User;
 import com.example.userserviceyellowteam.db.repository.UserJpaRepository;
 import com.example.userserviceyellowteam.service.CourierService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class CourierServiceImpl implements CourierService {
      * @return User
      */
     @Override
+    @Transactional
     public User getAny() {
         Optional<List<User>> optionalUsers = userJpaRepository.findAllWhereRoleLikeCourier();
         List<User> list = optionalUsers.orElseThrow();
