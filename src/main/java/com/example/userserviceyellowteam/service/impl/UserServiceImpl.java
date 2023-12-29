@@ -2,7 +2,6 @@ package com.example.userserviceyellowteam.service.impl;
 
 import com.example.userserviceyellowteam.db.entity.Role;
 import com.example.userserviceyellowteam.db.entity.User;
-import com.example.userserviceyellowteam.db.entity.enumeration.UserRole;
 import com.example.userserviceyellowteam.db.repository.RoleJpaRepository;
 import com.example.userserviceyellowteam.db.repository.UserJpaRepository;
 import com.example.userserviceyellowteam.dto.UserRequestDto;
@@ -13,9 +12,6 @@ import com.example.userserviceyellowteam.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -47,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto getUserByChatId(String chatId) {
-        return null;
+        User user = userJpaRepository.findByChatId(chatId).orElseThrow();
+        return userMapper.mapToDto(user);
     }
 }
