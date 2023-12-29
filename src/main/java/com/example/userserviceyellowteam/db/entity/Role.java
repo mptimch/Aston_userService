@@ -9,6 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,6 @@ public class Role implements Serializable {
     @Column(name = "title")
     @Enumerated(EnumType.STRING)
     private UserRole title;
-    @ManyToMany(mappedBy = "userRoleList", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "userRole", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<User> userList;
 }

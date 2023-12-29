@@ -16,7 +16,7 @@ spring:
   sql:
     init:
       mode: always
-      data-locations: classpath:init_script.sql
+      data-locations: classpath:init.sql
   cache:
     jcache:
       provider: org.ehcache.jsr107.EhcacheCachingProvider

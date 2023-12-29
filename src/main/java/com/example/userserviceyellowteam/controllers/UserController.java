@@ -25,5 +25,8 @@ public class UserController {
     UserResponseDto createUser(@RequestBody UserRequestDto userRequestDto){
         return userService.create(userRequestDto);
     }
-
+@GetMapping("/{id}")
+    UserResponseDto getUserByChatId(@PathVariable(name = "id") String chatId){
+        return userService.getUserByChatId(chatId);
+}
 }

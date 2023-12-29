@@ -12,6 +12,7 @@ import com.example.userserviceyellowteam.service.CourierService;
 import com.example.userserviceyellowteam.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +37,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDto create(UserRequestDto userRequestDto) {
         User user = userMapper.mapToUser(userRequestDto);
-        List<Role> roles = new ArrayList<>();
-        for (String r : userRequestDto.getUserRoles()){
-            Role role = roleJpaRepository.findByTitle(UserRole.valueOf(r));
-            if (role == null) {
-                throw new RuntimeException("Role not found: " + r);
-            }
-            roles.add(role);
-        }
-        user.setUserRoleList(roles);
+        Role byTitle = roleJpaRepository.findByTitle(user.getUserRole().getTitle());
+        user.setUserRole(byTitle);
         return userMapper.mapToDto(userJpaRepository.save(user));
+    }
+
+    @Override
+    public UserResponseDto getUserByChatId(String chatId) {
+        return null;
     }
 }
